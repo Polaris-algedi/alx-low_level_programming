@@ -25,7 +25,7 @@ int main(void)
 	{
 		for (a = i + 1; a <= 8; a++)
 		{
-			for (b = i + 2; b <= 9; b++)
+			for (b = a + 1; b <= 9; b++)
 			{
 				putchar('0' + i);
 				putchar('0' + a);
