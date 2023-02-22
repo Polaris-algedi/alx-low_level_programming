@@ -10,7 +10,7 @@
 void print_fibonacci_numbers(void)
 {
 	int l;
-	long int a = 1, sum = 2;
+	long int a = 0, sum = 1;
 
 	for (l = 0; l < 50; l++)
 	{
