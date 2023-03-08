@@ -21,6 +21,8 @@ char *_strstr(char *haystack, char *needle)
 	}
 	needle -= count;
 
+	if (count == 0)
+		return (haystack);
 	for (j = 0; haystack[j]; j++)
 	{
 		if (haystack[j] == *needle)
