@@ -1,7 +1,8 @@
 #include "main.h"
 
 /**
- * check_prime_number - Recursive helper function to check if a number is prime.
+ * check_prime_number - Recursive helper function to check if
+ * a number is prime.
  *
  * @n: integer to calculate.
  * @i: The current iteration value.
@@ -11,11 +12,11 @@
 
 int check_prime_number(int n, int i)
 {
-        if (i == 1)
-                return (1);
-        if (n % i == 0)
-                return (0);
-        return (check_prime_number(n, i - 1));
+	if (i == 1)
+		return (1);
+	if (n % i == 0)
+		return (0);
+	return (check_prime_number(n, i - 1));
 }
 
 /**
