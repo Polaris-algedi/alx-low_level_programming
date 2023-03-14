@@ -31,6 +31,8 @@ char *_strdup(char *str)
 	char *s;
 	int len, i;
 
+	if (str == NULL)
+		return (NULL);
 	len = _strlen_recursion(str);
 	s = malloc(sizeof(*s) * len + 1);
 
