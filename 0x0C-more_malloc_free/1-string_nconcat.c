@@ -59,7 +59,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		s1 = "";
 	if (s2 == NULL)
 		s2 = "";
-	len2 =_strlen(s2);
+	len2 = _strlen(s2);
 	if (len2 <= n)
 		n = _strlen(s2);
 
