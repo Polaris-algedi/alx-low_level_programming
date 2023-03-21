@@ -2,6 +2,7 @@
 #define _DOG_
 
 
+
 /**
  * struct dog - A struct that represents a dog.
  * @name: The name of the dog.
@@ -18,5 +19,7 @@ struct dog
 	char *owner;
 };
 
+void init_dog(struct dog *d, char *name, float age, char *owner);
+void print_dog(struct dog *d);
 
 #endif
