@@ -3,7 +3,7 @@
 #include "lists.h"
 
 /**
- * insert_nodeint_at_index -  inserts a new node at a given position
+ * insert_nodeint_at_index - inserts a new node at a given position
  * @head: double pointer to the listint_t list
  * @idx: index of the list where the new node should be added.
  * Index starts at 0
@@ -16,11 +16,15 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	unsigned int i;
 	listint_t *new, *temp;
 
-	new = (listint_t *)malloc(sizeof(listint_t));
-	if (!head || !new || !(*head))
+	if (!head)
+		return (NULL);
+
+	new = malloc(sizeof(listint_t));
+	if (!new)
 		return (NULL);
 
 	new->n = n;
+
 	if (idx == 0)
 	{
 		new->next = *head;
@@ -32,7 +36,10 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	for (i = 0; i < idx - 1; i++)
 	{
 		if (!temp)
+		{
+			free(new);
 			return (NULL);
+		}
 		temp = temp->next;
 	}
 
