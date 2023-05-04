@@ -6,29 +6,19 @@
  * there is one or more chars in the string b that is not 0 or 1.
  * b is NULL.
  */
-unsigned int binary_to_uint(const char *b)
-{
-	unsigned int power_2 = 1;
-	unsigned int sum = 0, x;
-	int i, j;
-
+unsigned int binary_to_uint(const char *b) {
+    unsigned int result = 0;
+    
 	if (!b)
-		return (0);
-	for (i = 0; b[i] != '\0'; i++)
+		return 0;
+	for (int i = 0; b[i] != '\0'; i++)
 	{
-	/* check if all the chars are eather 0 or 1 */
-		if (b[i] != '1' && b[i] != '0')
-			return (0);
-		/* calculate the power of 2*/
-		power_2 *= 2;
+		if (b[i] == '0')
+			result <<= 1;
+		else if (b[i] == '1')
+			result = (result << 1) + 1;
+		else
+			return 0;
 	}
-
-	power_2 /= 2;
-	for (j = 0; b[j] != '\0'; j++)
-	{
-		x = b[j] != '0' ? 1 : 0;
-		sum += x * power_2;
-		power_2 /= 2;
-	}
-	return (sum);
+	return (result);
 }
