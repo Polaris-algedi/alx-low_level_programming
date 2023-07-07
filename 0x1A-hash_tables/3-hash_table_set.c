@@ -21,13 +21,6 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		return (0);
 
 	index = key_index((const unsigned char *)key, ht->size);
-	/* Create the node */
-	new = malloc(sizeof(hash_node_t));
-	if (!new)
-	{
-		dprintf(2, "Error: Can't malloc\n");
-		return (0);
-	}
 
 	for (collision = ht->array[index]; collision; collision = collision->next)
 	{
@@ -37,6 +30,13 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 			collision->value = strdup(value);
 			return (1);
 		}
+	}
+	/* Create the node */
+	new = malloc(sizeof(hash_node_t));
+	if (!new)
+	{
+		dprintf(2, "Error: Can't malloc\n");
+		return (0);
 	}
 	new->key = strdup(key); /* To free afterwards*/
 	new->value = strdup(value); /* To free afterwards*/
