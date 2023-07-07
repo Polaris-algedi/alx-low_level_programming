@@ -13,6 +13,7 @@
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
+	hash_node_t *collision = NULL;
 	hash_node_t *new;
 	unsigned long int index;
 
@@ -26,6 +27,16 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	{
 		dprintf(2, "Error: Can't malloc\n");
 		return (0);
+	}
+
+	for (collision = ht->array[index]; collision; collision = collision->next)
+	{
+		if (strcmp(collision->key, key) == 0)
+		{
+			free(collision->value);
+			collision->value = strdup(value);
+			return (1);
+		}
 	}
 	new->key = strdup(key); /* To free afterwards*/
 	new->value = strdup(value); /* To free afterwards*/
