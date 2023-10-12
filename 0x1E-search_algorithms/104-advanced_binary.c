@@ -30,12 +30,10 @@ int advanced_binary_recursion(int *array, int low, int high, int value)
 	if (low == high)
 		return (-1);
 
-	if (array[mid] == value)
+	if (array[mid] >= value)
 		result = advanced_binary_recursion(array, low, mid, value);
-	else if (array[mid] < value)
-		result = advanced_binary_recursion(array, mid + 1, high, value);
 	else
-		result = advanced_binary_recursion(array, low, mid - 1, value);
+		result = advanced_binary_recursion(array, mid + 1, high, value);
 	return (result);
 }
 
