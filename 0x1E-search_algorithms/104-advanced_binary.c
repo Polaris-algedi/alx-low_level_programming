@@ -24,7 +24,7 @@ int advanced_binary_recursion(int *array, int low, int high, int value)
 
 	mid = low + (high - low) / 2;
 
-	if (array[mid] == value && high - low < 2)
+	if (array[mid] == value && (mid == low || array[mid - 1] != value))
 		return (mid);
 
 	if (low == high)
