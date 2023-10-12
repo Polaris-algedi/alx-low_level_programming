@@ -13,35 +13,33 @@
  */
 listint_t *jump_list(listint_t *list, size_t size, int value)
 {
-	size_t step, i;
-	listint_t *current, *previous;
+	size_t step = sqrt(size), i;
+	listint_t *block_start = list;
+	listint_t *block_end = list;
 
-	if (list == NULL)
-		return (NULL);
-
-	if (list->n == value)
-		return (list);
-
-	step = (int)sqrt((double)size);
-	current = list;
-	while (current->n < value && current->next != NULL)
+	/* Find the block where 'value' is present */
+	while (block_end->next != NULL && block_end->n < value)
 	{
-		previous = current;
-		for (i = 0; i < step && current->next != NULL; i++)
-			current = current->next;
+		block_start = block_end;
+		for (i = 0; i < step && block_end->next != NULL; i++)
+			block_end = block_end->next;
 
 		printf("Value checked array[%ld] = [%d]\n",
-				current->index, current->n);
+				block_end->index, block_end->n);
 	}
-	printf("Value found between indexes [%ld] and [%ld]\n",
-			previous->index, current->index);
 
-	for (current = previous; current != NULL; current = current->next)
+	printf("Value found between indexes [%ld] and [%ld]\n",
+			block_start->index, block_end->index);
+
+	/* Linear search within the block */
+	while (block_start != NULL && block_start->n <= value)
 	{
 		printf("Value checked array[%ld] = [%d]\n",
-				current->index, current->n);
-		if (current->n == value)
-			return (current);
+				block_start->index, block_start->n);
+		if (block_start->n == value)
+			return (block_start);
+
+		block_start = block_start->next;
 	}
 	return (NULL);
 }
